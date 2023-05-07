@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>구구단</title>
+</head>
+<body>
+  <div id="root">
+    <!-- {{}}로 접근 가능, {{}}안에도 js 접근 가능! -->
+    <div>{{first}} 곱하기 {{second}} 는?</div>
+    <form v-on:submit="onSubmitForm">
+      <!-- html에서 value="value"는 v-model(input과 vue를 연결!) -->
+      <input type="number" ref="answer" v-model="value">
+      <button type="submit">입력</button>
+      <div>v-model의 value값 : {{value}}</div>
+    </form>
+    <div id="result">{{result}}</div>
+  </div>
+</body>
+<script>
+  const app = new Vue({
+    el: '#root',
+    data: {  // react의 state..?
+      first: Math.ceil(Math.random()*9),
+      second: Math.ceil(Math.random()*9),
+      value: '',
+      result: '',
+    },
+    methods: {
+      onSubmitForm(e) {
+        e.preventDefault();
+        console.log("this : ", this)
+        console.log("value 타입",typeof(this.value))
+        const value = Number(this.value)
+        if (this.first * this.second === value) {
+          this.result = '정답';
+          this.first = Math.ceil(Math.random()*9);
+          this.second = Math.ceil(Math.random()*9);
+          this.value = '';
+          this.$refs.answer.focus();
+        } else {
+          this.result = '땡';
+          this.value = '';
+          this.$refs.answer.focus();
+        }
+      },
+    }
+  })
+</script>
+</html>
