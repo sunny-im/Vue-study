@@ -9,9 +9,9 @@
 </head>
 <body>
   <div id="root">
-    <word-relay></word-relay>
-    <word-relay></word-relay>
-    <word-relay></word-relay>
+    <word-relay start-word="시작"></word-relay>
+    <word-relay start-word="책상"></word-relay>
+    <word-relay start-word="의자"></word-relay>
   </div>
 <script>
   //컴포넌트는 인스턴스 보다는 위에, 스크립트는 div#root보다 아래에!
@@ -26,9 +26,10 @@
         <div>{{result}}</div>
       </div>
     `,
+    props: ['startWord'],
     data() {
       return {
-        word: '사이다',
+        word: this.startWord,
         input: '',
         result: '',
       }
