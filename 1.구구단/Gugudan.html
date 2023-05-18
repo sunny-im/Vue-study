@@ -13,6 +13,7 @@
     <div>{{first}} 곱하기 {{second}} 는?</div>
     <form v-on:submit="onSubmitForm">
       <!-- html에서 value="value"는 v-model(input과 vue를 연결!) -->
+      <!-- focus처럼 태그에 직접 접근해야 할 때 ref로 이름을 지정 -->
       <input type="number" ref="answer" v-model="value">
       <button type="submit">입력</button>
       <div>v-model의 value값 : {{value}}</div>
@@ -44,6 +45,7 @@
         } else {
           this.result = '땡';
           this.value = '';
+          // $refs => ref로 지정한 태그를 접근 (document.querySelector와 같은)
           this.$refs.answer.focus();
         }
       },
