@@ -27,6 +27,7 @@ const getNumber = () => {
   }
   return array;
 }  
+//
 export default {
   data() {
     return {
