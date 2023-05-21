@@ -17,18 +17,25 @@ export default {
   components: {
 
   },
+  // beforeCreated, created는 DOM 접근 전!
   beforeCreated() {
     console.log(1);
   },
   created() {
     console.log(2);
   },
+  // 탬플릿 영역안에서 호출하는 애들 (어디선가 무조건 호출이 되어야함))
   computed: {
     // sync의 첫번쨰 인자값은 파일이름
     ...sync('index',[
       'lists',  // 선언한 변수이름
     ])
   },
+  // 호출하지 않아도 실행, 감지되면 실행? (react useEffect의 두번째 인자 배열 같은 느낌?)
+  watch: {
+
+  },
+  // beforeMount, mounted는 DOM 접근 후, 초기 셋팅 사용가능
   beforeMount() {
 
   },
@@ -92,6 +99,7 @@ export default {
   beforeDestroy() {
 
   },
+  // 현재 컴포넌트에서만 발생 (ex. 바닐라자바스크립트 이벤트리스너 사용 시 , vue3에서는 unmounted)
   destroyed() {
 
   }
